@@ -1,0 +1,308 @@
+<header x-data="{ openMobile: false, openServices: false, openProducts: false }" >
+  <div class="relative bg-white">
+    <div class="flex justify-between items-center max-w-7xl mx-auto px-4 py-6 sm:px-6 md:justify-start md:space-x-10 lg:px-8">
+      <div class="flex justify-start lg:w-0 lg:flex-1">
+        <a href="<%= root_path %>">
+          <span class="sr-only">SERMI</span>
+          <%= image_tag "logo-sermi.png", class: "h-14 w-auto sm:h-14", alt: "Logo SERMI" %>
+        </a>
+      </div>
+      <div class="-mr-2 -my-2 md:hidden">
+        <button x-on:click="openMobile = ! openMobile" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500" aria-expanded="false">
+          <span class="sr-only">Ouvrir le menu</span>
+          <!-- Heroicon name: outline/menu -->
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+      <nav class="hidden md:flex space-x-10">
+        <div class="relative">
+          <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
+          <button x-on:click="openServices = ! openServices" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" aria-expanded="false">
+            <span>Services</span>
+            <!--
+              Heroicon name: solid/chevron-down
+
+              Item active: "text-gray-600", Item inactive: "text-gray-400"
+            -->
+            <svg class="text-gray-400 ml-2 h-5 w-5 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
+
+          <!--
+            'Solutions' flyout menu, show/hide based on flyout menu state.
+
+            Entering: "transition ease-out duration-200"
+              From: "opacity-0 translate-y-1"
+              To: "opacity-100 translate-y-0"
+            Leaving: "transition ease-in duration-150"
+              From: "opacity-100 translate-y-0"
+              To: "opacity-0 translate-y-1"
+          -->
+          <div x-cloak x-show="openServices" @click.outside="openServices = false" class="absolute z-10 -ml-4 mt-3 transform w-screen max-w-md lg:max-w-2xl lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
+            <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+              <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
+                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
+                  <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-r from-red-600 to-red-600 text-white sm:h-12 sm:w-12">
+                    <%= image_tag "icons/extincteur.svg", class: "w-6 h-6" %>
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-base font-medium text-gray-900">
+                      Extincteurs
+                    </p>
+                    <p class="mt-1 text-sm text-gray-500">
+                      Equipement, maintenance, implantation, pose et remplacement.
+                    </p>
+                  </div>
+                </a>
+
+                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
+                  <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-r from-red-600 to-red-600 text-white sm:h-12 sm:w-12">
+                    <%= image_tag "icons/alarm.svg", class: "w-6 h-6" %>
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-base font-medium text-gray-900">
+                      Alarmes
+                    </p>
+                    <p class="mt-1 text-sm text-gray-500">
+                      Alarmes Type 4.
+                    </p>
+                  </div>
+                </a>
+
+                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
+                  <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-r from-red-600 to-red-600 text-white sm:h-12 sm:w-12">
+                    <%= image_tag "icons/map.svg", class: "w-6 h-6" %>
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-base font-medium text-gray-900">
+                      Signalétique
+                    </p>
+                    <p class="mt-1 text-sm text-gray-500">
+                      Plans d’évacuation et installation de vos équipements de signalétique de sécurité.
+                    </p>
+                  </div>
+                </a>
+
+                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
+                  <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-r from-red-600 to-red-600 text-white sm:h-12 sm:w-12">
+                    <%= image_tag "icons/smoke_alarm.svg", class: "w-6 h-6" %>
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-base font-medium text-gray-900">
+                      Autres services
+                    </p>
+                    <p class="mt-1 text-sm text-gray-500">
+                      Désenfumage, éclairage, formation, colone sèche, ...
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="relative"">
+          <!-- Item active: "text-gray-900", Item inactive: "text-gray-500" -->
+          <button x-on:click="openProducts = ! openProducts" type="button" class="text-gray-500 group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" aria-expanded="false">
+            <span>Produits</span>
+            <!--
+              Heroicon name: solid/chevron-down
+
+              Item active: "text-gray-600", Item inactive: "text-gray-400"
+            -->
+            <svg class="text-gray-400 ml-2 h-5 w-5 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
+
+          <!--
+            'Solutions' flyout menu, show/hide based on flyout menu state.
+
+            Entering: "transition ease-out duration-200"
+              From: "opacity-0 translate-y-1"
+              To: "opacity-100 translate-y-0"
+            Leaving: "transition ease-in duration-150"
+              From: "opacity-100 translate-y-0"
+              To: "opacity-0 translate-y-1"
+          -->
+          <div x-cloak x-show="openProducts" @click.outside="openProducts = false" class="absolute z-10 -ml-4 mt-3 transform w-screen max-w-md lg:max-w-2xl lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
+            <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+              <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
+                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
+                  <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-r from-red-600 to-red-600 text-white sm:h-12 sm:w-12">
+                    <%= image_tag "icons/extincteur.svg", class: "w-6 h-6" %>
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-base font-medium text-gray-900">
+                      Extincteurs
+                    </p>
+                    <p class="mt-1 text-sm text-gray-500">
+                      Equipement, maintenance, implantation, pose et remplacement.
+                    </p>
+                  </div>
+                </a>
+
+                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
+                  <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-r from-red-600 to-red-600 text-white sm:h-12 sm:w-12">
+                    <%= image_tag "icons/smoke_away.svg", class: "w-6 h-6" %>
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-base font-medium text-gray-900">
+                      Désenfumage
+                    </p>
+                    <p class="mt-1 text-sm text-gray-500">
+                      Entretien, maintenance et mise en conformité.
+                    </p>
+                  </div>
+                </a>
+
+                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
+                  <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-r from-red-600 to-red-600 text-white sm:h-12 sm:w-12">
+                    <%= image_tag "icons/exit.svg", class: "w-6 h-6" %>
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-base font-medium text-gray-900">
+                      B.A.E.S.
+                    </p>
+                    <p class="mt-1 text-sm text-gray-500">
+                      Blocs autonomes d'éclairage de sécurité.
+                    </p>
+                  </div>
+                </a>
+
+                <a href="#" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50">
+                  <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-r from-red-600 to-red-600 text-white sm:h-12 sm:w-12">
+                    <%= image_tag "icons/firehydrant.svg", class: "w-6 h-6" %>
+                  </div>
+                  <div class="ml-4">
+                    <p class="text-base font-medium text-gray-900">
+                      Autres produits
+                    </p>
+                    <p class="mt-1 text-sm text-gray-500">
+                      Colonne sèche, R.I.A., Poteaux et bouches d'incendie, alarme, signalétique...
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="#" class="text-base font-medium text-gray-500 hover:text-gray-900">
+          Historique
+        </a>
+        <a href="#" class="text-base font-medium text-gray-500 hover:text-gray-900">
+          Actualités
+        </a>
+      </nav>
+      <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+        <a href="#" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+          FAQ
+        </a>
+        <a href="#" class="ml-8 whitespace-nowrap inline-flex items-center justify-center bg-gradient-to-r from-red-700 to-yellow-600 bg-origin-border px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white hover:from-red-500 hover:to-red-700">
+          Contact
+        </a>
+      </div>
+    </div>
+
+    <!--
+      Mobile menu, show/hide based on mobile menu state.
+
+      Entering: "duration-200 ease-out"
+        From: "opacity-0 scale-95"
+        To: "opacity-100 scale-100"
+      Leaving: "duration-100 ease-in"
+        From: "opacity-100 scale-100"
+        To: "opacity-0 scale-95"
+    -->
+    <div x-show="openMobile" class="absolute z-30 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
+      <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
+        <div class="pt-5 pb-6 px-5">
+          <div class="flex items-center justify-between">
+            <div>
+              <%= image_tag "logo-sermi.png", class: "h-10 w-auto", alt: "Logo SERMI" %>
+            </div>
+            <div class="-mr-2">
+              <button x-on:click="openMobile = false" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500">
+                <span class="sr-only">Fermer le menu</span>
+                <!-- Heroicon name: outline/x -->
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="mt-6">
+            <nav class="grid grid-cols-1 gap-7">
+              <a href="#" class="-m-3 p-3 flex items-center rounded-lg hover:bg-gray-50">
+                <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-r from-red-600 to-red-600 text-white">
+                  <!-- Heroicon name: outline/inbox -->
+                  <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                  </svg>
+                </div>
+                <div class="ml-4 text-base font-medium text-gray-900">
+                  Services
+                </div>
+              </a>
+
+              <a href="#" class="-m-3 p-3 flex items-center rounded-lg hover:bg-gray-50">
+                <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-r from-red-600 to-red-600 text-white">
+                  <!-- Heroicon name: outline/annotation -->
+                  <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                  </svg>
+                </div>
+                <div class="ml-4 text-base font-medium text-gray-900">
+                  Produits
+                </div>
+              </a>
+
+              <a href="#" class="-m-3 p-3 flex items-center rounded-lg hover:bg-gray-50">
+                <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-r from-red-600 to-red-600 text-white">
+                  <!-- Heroicon name: outline/chat-alt-2 -->
+                  <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                  </svg>
+                </div>
+                <div class="ml-4 text-base font-medium text-gray-900">
+                  Historique
+                </div>
+              </a>
+
+              <a href="#" class="-m-3 p-3 flex items-center rounded-lg hover:bg-gray-50">
+                <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-gradient-to-r from-red-600 to-red-600 text-white">
+                  <!-- Heroicon name: outline/question-mark-circle -->
+                  <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="ml-4 text-base font-medium text-gray-900">
+                  Contact
+                </div>
+              </a>
+            </nav>
+          </div>
+        </div>
+        <div class="py-6 px-5">
+          <div class="mt-6">
+            <a href="#" class="w-full flex items-center justify-center bg-gradient-to-r from-red-600 to-red-600 bg-origin-border px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white hover:from-purple-700 hover:to-red-700">
+              Appeler le 04 67 62 48 58
+            </a>
+            <p class="mt-6 text-center text-base font-medium text-gray-500">
+              12 rue Charles Richet - 34500 Béziers | 23 rue de Conches - 27000 Evreux
+              <a href="#" class="text-gray-900">
+                Du Lundi au Jeudi de 08h à 12h et de 14h à 18h <br>
+                Le Vendredi de 08h à 12h et de 14h à 17h
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
